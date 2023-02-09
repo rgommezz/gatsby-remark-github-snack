@@ -21,7 +21,7 @@ module.exports = ({ markdownAST }) => {
     ) {
       // Replace the paragraph node with a custom video node
       const html = `
-        <video width="400" controls autoplay style="margin-bottom: 16px">
+        <video width="400" controls style="margin-bottom: 16px">
             <source src="${text}" type="video/mp4">
         </video>
       `;
