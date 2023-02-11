@@ -27,7 +27,7 @@ module.exports = ({ markdownAST }) => {
       `;
 
       node.type = "html";
-      node.children = undefined;
+      node.children = [];
       node.value = html;
 
       return;
@@ -52,7 +52,7 @@ module.exports = ({ markdownAST }) => {
         `;
 
         node.type = "html";
-        node.children = undefined;
+        node.children = [];
         node.value = html;
       }
     }
