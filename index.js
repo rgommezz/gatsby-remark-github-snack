@@ -39,14 +39,19 @@ module.exports = ({ markdownAST }) => {
         // eslint-disable-next-line no-unused-vars
         const [_, ...rest] = link.url.split("@");
         const snackId = `@${rest.join("")}`;
+        const chunks = snackId.split('/');
+        const name = chunks[chunks.length - 1].replaceAll('-', ' ');
+        
         const html = `
           <!-- Embed saved Snack -->
           <div
             data-snack-id="${snackId}"
-            data-snack-platform="web"
             data-snack-preview="true"
-            data-snack-theme="light"
+            data-snack-name="${name}"
+            data-snack-description="Run the code directly from this blog post!"
             data-snack-loading="lazy"
+            data-snack-platform="ios"
+            data-snack-supportedplatforms="mydevice,ios,android"
             style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.08);border-radius:4px;height:800px;width:100%;margin-bottom:32px;margin-top:32px">
           </div>
         `;
