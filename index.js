@@ -4,7 +4,7 @@ const toString = require("mdast-util-to-string");
 /* eslint-disable no-param-reassign */
 
 /**
- * Transforms Github video urls into embedded videos and
+ * Transforms GitHub video urls into embedded videos and
  * Snack links into embedded snacks
  * @param markdownAST
  * @returns {*}
@@ -39,16 +39,13 @@ module.exports = ({ markdownAST }) => {
         // eslint-disable-next-line no-unused-vars
         const [_, ...rest] = link.url.split("@");
         const snackId = `@${rest.join("")}`;
-        const chunks = snackId.split('/');
-        const name = chunks[chunks.length - 1].replaceAll('-', ' ');
-        
+
         const html = `
           <!-- Embed saved Snack -->
           <div
             data-snack-id="${snackId}"
             data-snack-preview="true"
-            data-snack-name="${name}"
-            data-snack-description="Run the code directly from this blog post!"
+            data-snack-theme="dark"
             data-snack-loading="lazy"
             data-snack-platform="ios"
             data-snack-supportedplatforms="mydevice,ios,android"
