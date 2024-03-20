@@ -36,19 +36,23 @@ module.exports = ({ markdownAST }) => {
     if (Array.isArray(node.children)) {
       const link = node.children.find((child) => child.type === "link");
       if (link?.url?.toLowerCase?.()?.startsWith("https://snack.expo.dev")) {
+        const linkUrl = new URL(link.url);
+        const queryParams = linkUrl.searchParams;
         // eslint-disable-next-line no-unused-vars
         const [_, ...rest] = link.url.split("@");
         const snackId = `@${rest.join("")}`;
+        // This snackId can contain custom query params at the end, like web=true. We need to remove them.
+        const [snackIdWithoutQuery] = snackId.split("?");
 
         const html = `
           <!-- Embed saved Snack -->
           <div
-            data-snack-id="${snackId}"
+            data-snack-id="${snackIdWithoutQuery}"
             data-snack-preview="true"
             data-snack-theme="dark"
             data-snack-loading="lazy"
             data-snack-platform="ios"
-            data-snack-supportedplatforms="mydevice,ios,android"
+            data-snack-supportedplatforms="mydevice,ios,android${queryParams.has("web") ? ",web" : ""}"
             style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.08);border-radius:4px;height:800px;width:100%;margin-bottom:32px;margin-top:32px">
           </div>
         `;
