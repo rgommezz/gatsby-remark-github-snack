@@ -51,7 +51,7 @@ module.exports = ({ markdownAST }) => {
             data-snack-preview="true"
             data-snack-theme="dark"
             data-snack-loading="lazy"
-            data-snack-platform="ios"
+            data-snack-platform=${queryParams.has("web") ? "web" : "ios"}
             data-snack-supportedplatforms="mydevice,ios,android${queryParams.has("web") ? ",web" : ""}"
             style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.08);border-radius:4px;height:800px;width:100%;margin-bottom:32px;margin-top:32px">
           </div>
